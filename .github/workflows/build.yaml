@@ -19,7 +19,7 @@ jobs:
       - name: Extract Public Key Ring
         run: echo ${{secrets.pubring}} | base64 --decode > ./pubring.gpg
       - name: Extract Secret Key Ring
-        run: echo ${{secrets.secring}} | base64 --decode > ./secring.gpg
+        run: echo ${{secrets.secring}} | base64 --decode | gpg --import
       - name: Extract Maven settings
         run: echo ${{secrets.settings}} | base64 --decode > ./settings.xml
       - name: Build with Maven
