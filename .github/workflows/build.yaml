@@ -3,7 +3,7 @@ name: Java CI
 on:
   push:
     branches:
-    - master
+      - master
 
 jobs:
   build:
@@ -16,11 +16,12 @@ jobs:
         with:
           java-version: '8'
           distribution: 'adopt'
-      - name: Extract Public Key Ring
-        run: echo ${{secrets.pubring}} | base64 --decode > ./pubring.gpg
-      - name: Extract Secret Key Ring
-        run: echo ${{secrets.secring}} | base64 --decode | gpg --import
-      - name: Extract Maven settings
-        run: echo ${{secrets.settings}} | base64 --decode > ./settings.xml
+      - name: Extract configuration
+        run: |
+          echo -n "SECRING" | gpg --import > ./gpg.logs
+          echo -n "SETTINGS" > ./settings.xml
+        env:
+          SECRING: ${{secrets.SECRING}}
+          SETTINGS: ${{secrets.SETTINGS}}
       - name: Build with Maven
         run: mvn verify --settings ./settings.xml --batch-mode --update-snapshots -DskipTests=true -B
