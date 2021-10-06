@@ -18,8 +18,8 @@ jobs:
           distribution: 'adopt'
       - name: Extract configuration
         run: |
-          echo -n "SECRING" | gpg --import > ./gpg.logs
-          echo -n "SETTINGS" > ./settings.xml
+          echo -n "$SECRING" | gpg --import > ./gpg.logs
+          echo -n "$SETTINGS" > ./settings.xml
         env:
           SECRING: ${{secrets.SECRING}}
           SETTINGS: ${{secrets.SETTINGS}}
