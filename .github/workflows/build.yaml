@@ -17,10 +17,10 @@ jobs:
           java-version: '8'
           distribution: 'adopt'
       - name: Extract Public Key Ring
-        run: echo ${{secrets.pubring}} | base64 --decode >> ./pubring.gpg
+        run: echo ${{secrets.pubring}} | base64 --decode > ./pubring.gpg
       - name: Extract Secret Key Ring
-        run: echo ${{secrets.secring}} | base64 --decode >> ./secring.gpg
+        run: echo ${{secrets.secring}} | base64 --decode > ./secring.gpg
       - name: Extract Maven settings
-        run: echo ${{secrets.settings}} >> ./settings.xml
+        run: echo ${{secrets.settings}} | base64 --decode > ./settings.xml
       - name: Build with Maven
         run: mvn verify --settings ./settings.xml --batch-mode --update-snapshots -DskipTests=true -B
