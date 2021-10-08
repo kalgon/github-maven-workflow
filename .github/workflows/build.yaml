@@ -18,10 +18,14 @@ jobs:
           distribution: 'adopt'
       - name: Extract configuration
         run: |
-          echo -n "$SECRING" | gpg --import 2> ./gpg.logs
-          echo -n "$SETTINGS" > ./settings.xml
+          echo -n "$MAVEN_SITE" > ./settings.xml
+#          echo -n "$SECRING" | gpg --import 2> ./gpg.logs
+#          echo -n "$SETTINGS" > ./settings.xml
         env:
-          SECRING: ${{secrets.SECRING}}
-          SETTINGS: ${{secrets.SETTINGS}}
+          MAVEN_SITE: ${{secrets.MAVEN_SITE}}
+#          SECRING: ${{secrets.SECRING}}
+#          SETTINGS: ${{secrets.SETTINGS}}
+#      - name: Build with Maven
+#        run: mvn verify --settings ./settings.xml --batch-mode --update-snapshots -DskipTests=true -B
       - name: Build with Maven
-        run: mvn verify --settings ./settings.xml --batch-mode --update-snapshots -DskipTests=true -B
+        run: mvn verify site site:stage scm-publish:publish-scm --batch-mode --update-snapshots -DskipTests=true -B
