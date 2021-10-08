@@ -8,12 +8,12 @@
     <artifactId>github-maven-workflow</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <distributionManagement>
-        <site>
-            <id>github</id>
-            <url>scm:git:git@github.com:kalgon/github-maven-workflow.git</url>
-        </site>
-    </distributionManagement>
+<!--    <distributionManagement>-->
+<!--        <site>-->
+<!--            <id>github</id>-->
+<!--            <url>scm:git:git@github.com:kalgon/github-maven-workflow.git</url>-->
+<!--        </site>-->
+<!--    </distributionManagement>-->
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -57,6 +57,7 @@
                  <configuration>
                      <scmBranch>gh-pages</scmBranch>
                      <serverId>github</serverId>
+                     <pubScmUrl>scm:git:git@github.com:kalgon/github-maven-workflow.git</pubScmUrl>
                  </configuration>
              </plugin>
            </plugins>
