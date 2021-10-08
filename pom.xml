@@ -11,7 +11,7 @@
     <distributionManagement>
         <site>
             <id>github</id>
-            <url>scm:git:git@github.com:kalgongithub-maven-workflow</url>
+            <url>scm:git:git@github.com:kalgon/github-maven-workflow</url>
         </site>
     </distributionManagement>
 
